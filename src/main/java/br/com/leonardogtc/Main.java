@@ -14,7 +14,9 @@ public class Main {
         EntityManager em = emf.createEntityManager();
 
         Pessoa p = em.find(Pessoa.class, 2);
-        System.out.println("Pessoa encontrada: " + p.getNome());
+        em.getTransaction().begin();
+        em.remove(p);
+        em.getTransaction().commit();
 
         System.out.println("Procedimento executado com sucesso!");
         em.close();
